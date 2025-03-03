@@ -2,5 +2,5 @@
 *
 !/src
 /src/*
-/src/NoFetch/*
+/src/NoFetch/NoFetch.vcxproj
 !/src/NoFetch/NoFetch.cpp
