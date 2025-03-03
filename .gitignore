@@ -1,6 +1,10 @@
-*/
-*.txt
+# Игнорировать всё
+*
+
+# Исключить .gitignore
 !.gitignore
+
+# Исключить папки, ведущие к NoFetch.cpp
 !/NoFetch/
 !/NoFetch/src/
 !/NoFetch/src/NoFetch/
