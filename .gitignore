@@ -1,4 +1,4 @@
 */
 *.txt
 !.gitignore
-!NoFetch.cpp
+!/NoFetch/src/NoFetch/NoFetch.cpp
