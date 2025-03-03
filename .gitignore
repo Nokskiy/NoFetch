@@ -2,5 +2,3 @@
 *
 !.gitignore
 !/src/*
-/src/*
-!/src/NoFetch/
