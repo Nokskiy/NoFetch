@@ -6,4 +6,3 @@
 !LICENSE
 # Исключить папки, ведущие к NoFetch.cpp
 !/NoFetch/
-!/NoFetch/src/
