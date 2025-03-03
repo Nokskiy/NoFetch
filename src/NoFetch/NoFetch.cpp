@@ -18,6 +18,7 @@ void getChar();
 float totalRAM();
 float availableRAM();
 void monitorAvailableRAM();
+string os();
 
 int main()
 {
@@ -63,6 +64,7 @@ void command()
         monitorAvailableRAM();
         break;
     default:
+        setTextColor(colors["Error"]);
         cout << "error, check the correctness of the command form. To do this, enter 'help'\n";
         command();
         break;
@@ -73,6 +75,7 @@ void init()
 {
     colors["Fetch"] = 3;
     colors["Command"] = 2;
+    colors["Error"] = 5;
     hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
     setTextColor(colors["Fetch"]);
@@ -95,6 +98,7 @@ void help()
 void getChar()
 {
     setTextColor(colors["Fetch"]);
+    cout << "\t\OS\t\t\t\t" << os() << "\n";
     cout << "\t\Total RAM\t\t\t" << totalRAM() / (1024 * 1024) << "MB" << "\n";
     cout << "\t\Available  RAM\t\t\t" <<  availableRAM()/ (1024 * 1024)<<"MB" <<"\t"<< availableRAM() / totalRAM() *100 << "%" << "\n";
     command();
@@ -123,4 +127,18 @@ void monitorAvailableRAM()
         cout << "\t\Available  RAM\t\t\t" << availableRAM() / (1024 * 1024) << "MB" << "\t" << availableRAM() / totalRAM() * 100 << "%" << "\n";
     }
     command();
+}
+string os()
+{
+    #ifdef _WIN32
+        return "Windows";
+    #elif __linux__
+        return "Linux";
+    #elif __APPLE__
+        return "Mac os";
+    #elif __unix__
+        return "Unix like";
+    #else
+        return "Unknown";
+    #endif
 }
