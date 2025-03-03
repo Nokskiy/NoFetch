@@ -5,7 +5,4 @@
 !.gitignore
 !LICENSE
 # Исключить папки, ведущие к NoFetch.cpp
-!/NoFetch/
-!/NoFetch/src/
-!/NoFetch/src/NoFetch/
-!/NoFetch/src/NoFetch/NoFetch.cpp
+!/src/
