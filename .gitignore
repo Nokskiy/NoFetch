@@ -2,4 +2,5 @@
 *
 !/src
 /src/*
-!/src/NoFetch/*
+/src/NoFetch/*
+!/src/NoFetch/NoFetch.cpp
