@@ -8,7 +8,7 @@ using namespace std;
 HANDLE hConsole;
 
 map<string, int> colors;
-string commandList[] = {"help","sys_char","monitor_Avail_RAM"};
+string commandList[] = {"help","sys_char","monitor_avail_RAM"};
 
 void setTextColor(int Color);
 void command();
@@ -117,6 +117,7 @@ void monitorAvailableRAM()
 {
     auto startTime = time(NULL);
     auto endTime = startTime + 10;
+    setTextColor(colors["Fetch"]);
     while (time(NULL) != endTime)
     {
         cout << "\t\Available  RAM\t\t\t" << availableRAM() / (1024 * 1024) << "MB" << "\t" << availableRAM() / totalRAM() * 100 << "%" << "\n";
