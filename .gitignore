@@ -1,8 +1,2 @@
-# Игнорировать всё
-*
-
-# Исключить .gitignore
-!.gitignore
-!LICENSE
-# Исключить папки, ведущие к NoFetch.cpp
-!/NoFetch/
+/*
+!/src
