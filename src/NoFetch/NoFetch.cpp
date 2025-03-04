@@ -8,7 +8,7 @@ using namespace std;
 HANDLE hConsole;
 
 map<string, int> colors;
-string commandList[] = {"help","sys_char","monitor_avail_RAM"};
+string commandList[] = {"help","sys_char","monitor_avail_RAM","clear"};
 
 void setTextColor(int Color);
 void command();
@@ -19,6 +19,7 @@ float totalRAM();
 float availableRAM();
 void monitorAvailableRAM();
 string os();
+void clear();
 
 int main()
 {
@@ -62,6 +63,9 @@ void command()
         break;
     case(2)://monitor ram
         monitorAvailableRAM();
+        break;
+    case(3)://clear
+        clear();
         break;
     default:
         setTextColor(colors["Error"]);
@@ -141,4 +145,9 @@ string os()
     #else
         return "Unknown";
     #endif
+}
+void clear()
+{
+    system("cls");
+    command();
 }
