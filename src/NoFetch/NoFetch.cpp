@@ -17,6 +17,7 @@ void help();
 void getChar();
 float totalRAM();
 float availableRAM();
+float usedRAM();
 void monitorAvailableRAM();
 string os();
 void clear();
@@ -104,7 +105,8 @@ void getChar()
     setTextColor(colors["Fetch"]);
     cout << "\t\OS\t\t\t\t" << os() << "\n";
     cout << "\t\Total RAM\t\t\t" << totalRAM() / (1024 * 1024) << "MB" << "\n";
-    cout << "\t\Available  RAM\t\t\t" <<  availableRAM()/ (1024 * 1024)<<"MB" <<"\t"<< availableRAM() / totalRAM() *100 << "%" << "\n";
+    cout << "\t\Available RAM\t\t\t" << availableRAM() / (1024 * 1024) << "MB" << "\t" << availableRAM() / totalRAM() * 100 << "%" << "\n";
+    cout << "\t\Used RAM\t\t\t" << usedRAM() / (1024 * 1024) << "MB\n";
     command();
 }
 float totalRAM()
@@ -120,6 +122,10 @@ float availableRAM()
     memInfo.dwLength = sizeof(MEMORYSTATUSEX);
     GlobalMemoryStatusEx(&memInfo);
     return memInfo.ullAvailPhys;
+}
+float usedRAM()
+{
+    return totalRAM() - availableRAM();
 }
 void monitorAvailableRAM()
 {
