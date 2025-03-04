@@ -12,6 +12,8 @@
 * sys_char - shows PC characteristics
 * monitor_avail_RAM - displays memory consumption for 10 seconds
 * clear - clear cmd
+* o_buf - shows buffer
+* e_buf - increases the buffer
 
 
 # __There are only a few functions available now, but new ones will appear in the future and it is possible that the software will become cross-platform.__
