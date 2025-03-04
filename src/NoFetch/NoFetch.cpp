@@ -104,11 +104,12 @@ void getChar()
 {
     setTextColor(colors["Fetch"]);
     cout << "\t\OS\t\t\t\t" << os() << "\n";
-    cout << "\t\Total RAM\t\t\t" << totalRAM() / (1024 * 1024) << "MB" << "\n";
-    cout << "\t\Available RAM\t\t\t" << availableRAM() / (1024 * 1024) << "MB" << "\t" << availableRAM() / totalRAM() * 100 << "%" << "\n";
-    cout << "\t\Used RAM\t\t\t" << usedRAM() / (1024 * 1024) << "MB\n";
+    cout << "\t\Total RAM\t\t\t" << totalRAM() / (1024 * 1024) << " MB" << "\n";
+    cout << "\t\Available RAM\t\t\t" << availableRAM() / (1024 * 1024) << " MB" << "\t" << availableRAM() / totalRAM() * 100 << "%" << "\n";
+    cout << "\t\Used RAM\t\t\t" << usedRAM() / (1024 * 1024) << " MB\n";
     command();
 }
+
 float totalRAM()
 {
     MEMORYSTATUSEX memInfo;
@@ -116,6 +117,7 @@ float totalRAM()
     GlobalMemoryStatusEx(&memInfo);
     return memInfo.ullTotalPhys;
 }
+
 float availableRAM()
 {
     MEMORYSTATUSEX memInfo;
@@ -123,10 +125,12 @@ float availableRAM()
     GlobalMemoryStatusEx(&memInfo);
     return memInfo.ullAvailPhys;
 }
+
 float usedRAM()
 {
     return totalRAM() - availableRAM();
 }
+
 void monitorAvailableRAM()
 {
     auto startTime = time(NULL);
@@ -138,6 +142,7 @@ void monitorAvailableRAM()
     }
     command();
 }
+
 string os()
 {
     #ifdef _WIN32
@@ -152,6 +157,7 @@ string os()
         return "Unknown";
     #endif
 }
+
 void clear()
 {
     system("cls");
