@@ -1,9 +1,8 @@
 <h1 align="center"> NoFetch
-<h1 align="">
-  
+
+# About the project
 "NoFetch" is a console program for working with a computer. In particular, you can find out the characteristics of __PC__. It is not a fetch, but performs its functions.
-
-
+  
   ![изображение](https://github.com/user-attachments/assets/28870912-6a5f-4b6f-b520-ef2d2eee9939)
 
 
