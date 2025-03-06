@@ -5,7 +5,11 @@
 #include <map>
 #include <fstream>
 #include <string>
+#include <filesystem>
+#include <vector>
+#include <experimental/filesystem>
 
+using namespace std::experimental::filesystem::v1;
 using namespace std;
 
 HANDLE hConsole;
@@ -31,6 +35,9 @@ void extendBuffer();
 
 int main()
 {
+    
+    path dirPath = "buffer.txt";
+    cout << dirPath.filename();
     init();
     setTextColor(colors["Fetch"]);
 }
@@ -55,10 +62,6 @@ void command()
             commandIndex = i;
             break;
         }
-    }
-    if (commandIndex == -1)
-    {
-
     }
     switch (commandIndex)
     {
