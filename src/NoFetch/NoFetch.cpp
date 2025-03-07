@@ -7,14 +7,14 @@
 #include <string>
 #include <filesystem>
 #include <vector>
-#include <experimental/filesystem>
+#include <filesystem>
 
-using namespace std::experimental::filesystem::v1;
+#include "Cppich.h"
+
 using namespace std;
 
 HANDLE hConsole;
 
-map<string, int> colors;
 string commandList[] = {"help","sys_char","monitor_avail_RAM","clear","o_buf","e_buf" };
 
 
@@ -35,25 +35,14 @@ void extendBuffer();
 
 int main()
 {
-    
-    path dirPath = "buffer.txt";
-    cout << dirPath.filename();
     init();
-    setTextColor(colors["Fetch"]);
-}
-
-void setTextColor(int Color)
-{
-    SetConsoleTextAttribute(hConsole, Color);
 }
 
 void command()
 {
     string commandName;
-    setTextColor(colors["Fetch"]);
-    cout << "enter the command : ";
-    setTextColor(colors["Command"]);
-    cin >> commandName;
+    cppich::print("enter the command : ",cppich::Cyan);
+    commandName = cppich::cin(cppich::Green);
     int commandIndex = -1;
     for (int i = 0; i < size(commandList); i++)
     {
@@ -84,7 +73,6 @@ void command()
         extendBuffer();
         break;
     default:
-        setTextColor(colors["Error"]);
         cout << "error, check the correctness of the command form. To do this, enter 'help'\n";
         command();
         break;
@@ -93,35 +81,26 @@ void command()
 
 void init()
 {
-    colors["Fetch"] = 3;
-    colors["Command"] = 2;
-    colors["Error"] = 5;
-    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-
-    setTextColor(colors["Fetch"]);
-    cout << "You can enter the command 'help' for help.\n";
-
+    cppich::print("You can enter the command 'help' for help.\n",cppich::Cyan);
     command();
 }
 
 void help()
 {
-    setTextColor(colors["Fetch"]);
-    cout << "\ncommands list: \n\n";
+    cppich::print("\ncommands list: \n\n", cppich::Cyan);
     for (int i = 0; i < size(commandList); i++)
     {
-        cout << commandList[i] << "\n\n";
+        cppich::print(commandList[i] + "\n\n",cppich::Cyan);
     }
     command();
 }
 
 void getChar()
 {
-    setTextColor(colors["Fetch"]);
-    cout << "\t\OS\t\t\t\t" << os() << "\n";
-    cout << "\t\Total RAM\t\t\t" << totalRAM() / (1024 * 1024) << " MB" << "\n";
-    cout << "\t\Available RAM\t\t\t" << availableRAM() / (1024 * 1024) << " MB" << "\t" << availableRAM() / totalRAM() * 100 << "%" << "\n";
-    cout << "\t\Used RAM\t\t\t" << usedRAM() / (1024 * 1024) << " MB\n";
+    cppich::print("\t\OS\t\t\t\t" + os() + "\n",cppich::Cyan);
+    cppich::print("\t\Total RAM\t\t\t" + to_string(totalRAM() / (1024 * 1024)) + " MB\n",cppich::Cyan);
+    cppich::print("\t\Available RAM\t\t\t" + to_string(availableRAM() / (1024 * 1024)) + " MB" + "\t" + to_string(availableRAM() / totalRAM() * 100) + "%\n", cppich::Cyan);
+    cppich::print("\t\Used RAM\t\t\t" + to_string(usedRAM() / (1024 * 1024)) + " MB\n", cppich::Cyan);
     command();
 }
 
@@ -150,10 +129,9 @@ void monitorAvailableRAM()
 {
     auto startTime = time(NULL);
     auto endTime = startTime + 10;
-    setTextColor(colors["Fetch"]);
     while (time(NULL) != endTime)
     {
-        cout << "\t\Available  RAM\t\t\t" << availableRAM() / (1024 * 1024) << "MB" << "\t" << availableRAM() / totalRAM() * 100 << "%" << "\n";
+        cppich::print("\t\Available  RAM\t\t\t" + to_string(availableRAM() / (1024 * 1024)) + "MB\t" + to_string(availableRAM() / totalRAM() * 100) + "%\n",cppich::Cyan);
     }
     command();
 }
@@ -181,7 +159,6 @@ void clear()
 
 void openBuffer()
 {
-    setTextColor(colors["Fetch"]);
     ofstream bufMake;
     bufMake.open("buffer.txt", ios::in | ios::out);
     bufMake.close();
@@ -198,7 +175,7 @@ void openBuffer()
         {
             break;
         }
-        cout << i << "=====> " << str << "\n";
+        cppich::print(to_string(i) + "=====> " + str + "\n", cppich::Cyan);
     }
     buffer.close();
     command();
@@ -206,13 +183,11 @@ void openBuffer()
 
 void extendBuffer()
 {
-    setTextColor(colors["Fetch"]);
     ofstream bufMake;
     bufMake.open("buffer.txt", ofstream::app);
     string text;
-    cout << "text: ";
-    cin.ignore();
-    getline(cin, text);
+    cppich::print("enter your text\n", cppich::Cyan);
+    text = cppich::cin(cppich::Green);
     bufMake << text + "\n";
     bufMake.close();
     command();
